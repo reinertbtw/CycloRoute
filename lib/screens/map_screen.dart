@@ -1,32 +1,48 @@
 import 'package:flutter/material.dart';
 
-class MapScreen extends StatelessWidget {
+class MapScreen extends StatefulWidget {
   const MapScreen({super.key});
+
+  @override
+  State<MapScreen> createState() => _MapScreenState();
+}
+
+class _MapScreenState extends State<MapScreen> {
+  int _selectedIndex = 0;
+
+  final List<Widget> _pages = [
+    Container(
+      color: Colors.green[100],
+      child: const Center(child: Text("Mapa")),
+    ),
+    Container(
+      color: Colors.blue[100],
+      child: const Center(child: Text("Rotas")),
+    ),
+    Container(
+      color: Colors.orange[100],
+      child: const Center(child: Text("Configurações")),
+    ),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          // 1. MAPA (placeholder full screen)
-          Container(
-            width: double.infinity,
-            height: double.infinity,
-            color: Colors.green[100],
-            child: const Center(
-              child: Text("MAPA (placeholder)", style: TextStyle(fontSize: 20)),
-            ),
-          ),
+      body: _pages[_selectedIndex],
 
-          // 2. Botão flutuante (GPS fake por enquanto)
-          Positioned(
-            bottom: 100,
-            right: 20,
-            child: FloatingActionButton(
-              onPressed: () {},
-              child: const Icon(Icons.my_location),
-            ),
-          ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.map), label: "Mapa"),
+          BottomNavigationBarItem(icon: Icon(Icons.alt_route), label: "Rotas"),
+          BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Config"),
         ],
       ),
     );
