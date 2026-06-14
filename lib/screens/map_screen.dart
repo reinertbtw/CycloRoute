@@ -12,8 +12,22 @@ class _MapScreenState extends State<MapScreen> {
 
   final List<Widget> _pages = [
     Container(
-      color: Colors.green[100],
-      child: const Center(child: Text("Mapa")),
+      width: double.infinity,
+      height: double.infinity,
+      color: Colors.grey[300],
+      child: Stack(
+        children: [
+          const Center(child: Icon(Icons.map, size: 80, color: Colors.grey)),
+        ],
+      ),
+    ),
+    Positioned(
+      bottom: 120,
+      right: 20,
+      child: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(Icons.my_location),
+      ),
     ),
     Container(
       color: Colors.blue[100],
