@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'screens/home_screen.dart';
+import 'screens/map_screen.dart';
 
 void main() {
   runApp(const CycloRouteApp());
@@ -16,7 +17,7 @@ class CycloRouteApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
       ),
-      home: const HomeScreen(),
+      home: const MapScreen(),
     );
   }
 }
