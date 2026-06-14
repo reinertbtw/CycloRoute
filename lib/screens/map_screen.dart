@@ -27,6 +27,24 @@ class _MapScreenState extends State<MapScreen> {
               child: const Icon(Icons.my_location),
             ),
           ),
+
+          Positioned(
+            left: 16,
+            right: 16,
+            bottom: 16,
+            child: Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(16),
+                boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 10)],
+              ),
+              child: const Text(
+                "Nenhuma rota selecionada",
+                style: TextStyle(fontSize: 16),
+              ),
+            ),
+          ),
         ],
       ),
     ),
