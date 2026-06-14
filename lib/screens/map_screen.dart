@@ -18,15 +18,16 @@ class _MapScreenState extends State<MapScreen> {
       child: Stack(
         children: [
           const Center(child: Icon(Icons.map, size: 80, color: Colors.grey)),
+
+          Positioned(
+            bottom: 120,
+            right: 20,
+            child: FloatingActionButton(
+              onPressed: () {},
+              child: const Icon(Icons.my_location),
+            ),
+          ),
         ],
-      ),
-    ),
-    Positioned(
-      bottom: 120,
-      right: 20,
-      child: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.my_location),
       ),
     ),
     Container(
