@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'routes_screen.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart';
 
 class MapScreen extends StatefulWidget {
   const MapScreen({super.key});
@@ -18,7 +20,18 @@ class _MapScreenState extends State<MapScreen> {
       color: Colors.grey[300],
       child: Stack(
         children: [
-          const Center(child: Icon(Icons.map, size: 80, color: Colors.grey)),
+          FlutterMap(
+            options: const MapOptions(
+              initialCenter: LatLng(-29.6842, -51.1303),
+              initialZoom: 13,
+            ),
+            children: [
+              TileLayer(
+                urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                userAgentPackageName: 'com.example.cycloroute',
+              ),
+            ],
+          ),
 
           Positioned(
             bottom: 120,
@@ -50,7 +63,7 @@ class _MapScreenState extends State<MapScreen> {
       ),
     ),
     const RoutesScreen(),
-    
+
     Container(
       color: Colors.orange[100],
       child: const Center(child: Text("Configurações")),
