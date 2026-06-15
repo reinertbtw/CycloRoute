@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'routes_screen.dart';
 
 class MapScreen extends StatefulWidget {
   const MapScreen({super.key});
@@ -48,10 +49,8 @@ class _MapScreenState extends State<MapScreen> {
         ],
       ),
     ),
-    Container(
-      color: Colors.blue[100],
-      child: const Center(child: Text("Rotas")),
-    ),
+    const RoutesScreen(),
+    
     Container(
       color: Colors.orange[100],
       child: const Center(child: Text("Configurações")),
