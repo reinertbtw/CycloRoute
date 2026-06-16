@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'routes_screen.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:geolocator/geolocator.dart';
 
 class MapScreen extends StatefulWidget {
   const MapScreen({super.key});
@@ -11,7 +12,19 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreenState extends State<MapScreen> {
+  @override
+  void initState() {
+    super.initState();
+    _getCurrentLocation();
+  }
+
   int _selectedIndex = 0;
+
+  Future<void> _getCurrentLocation() async {
+    bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
+
+    print(serviceEnabled);
+  }
 
   final List<Widget> _pages = [
     Container(
