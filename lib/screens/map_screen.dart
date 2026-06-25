@@ -21,10 +21,18 @@ class _MapScreenState extends State<MapScreen> {
   int _selectedIndex = 0;
 
   Future<void> _getCurrentLocation() async {
-    bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
+  print("TESTE GPS INICIADO");
 
-    print(serviceEnabled);
-  }
+  LocationPermission permission =
+      await Geolocator.requestPermission();
+
+  print("RESULTADO PERMISSÃO: $permission");
+
+  Position position = await Geolocator.getCurrentPosition();
+
+  print("LATITUDE: ${position.latitude}");
+  print("LONGITUDE: ${position.longitude}");
+}
 
   final List<Widget> _pages = [
     Container(
