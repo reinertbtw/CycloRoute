@@ -65,11 +65,42 @@ class _MapScreenState extends State<MapScreen> {
               initialZoom: 13,
             ),
             children: [
-              TileLayer(
-                urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                userAgentPackageName: 'com.example.cycloroute',
-              ),
-            ],
+  TileLayer(
+    urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+    userAgentPackageName: 'com.example.cycloroute',
+  ),
+
+  if (_currentPosition != null)
+    MarkerLayer(
+      markers: [
+        Marker(
+  point: LatLng(
+    _currentPosition!.latitude,
+    _currentPosition!.longitude,
+  ),
+  width: 70,
+  height: 70,
+  child: Container(
+    decoration: BoxDecoration(
+      color: Colors.blue,
+      shape: BoxShape.circle,
+      boxShadow: [
+        BoxShadow(
+          color: Colors.black26,
+          blurRadius: 10,
+        ),
+      ],
+    ),
+    child: const Icon(
+      Icons.directions_bike,
+      color: Colors.white,
+      size: 35,
+    ),
+  ),
+),
+      ],
+    ),
+],
           ),
 
           Positioned(
