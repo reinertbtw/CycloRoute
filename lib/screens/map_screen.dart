@@ -19,22 +19,36 @@ class _MapScreenState extends State<MapScreen> {
   }
 
   int _selectedIndex = 0;
+  Position? _currentPosition;
+  final MapController _mapController = MapController();
 
   Future<void> _getCurrentLocation() async {
-  print("TESTE GPS INICIADO");
+    print("TESTE GPS INICIADO");
 
-  LocationPermission permission =
-      await Geolocator.requestPermission();
+    LocationPermission permission =
+        await Geolocator.requestPermission();
 
-  print("RESULTADO PERMISSÃO: $permission");
+    print("RESULTADO PERMISSÃO: $permission");
 
-  Position position = await Geolocator.getCurrentPosition();
+    Position position = await Geolocator.getCurrentPosition();
 
-  print("LATITUDE: ${position.latitude}");
-  print("LONGITUDE: ${position.longitude}");
-}
+    setState(() {
+      _currentPosition = position;
+    });
 
-  final List<Widget> _pages = [
+    _mapController.move(
+  LatLng(
+    position.latitude,
+    position.longitude,
+  ),
+  16,
+);
+
+    print("LAT: ${position.latitude}");
+    print("LNG: ${position.longitude}");
+  }
+
+  List<Widget> get _pages => [
     Container(
       width: double.infinity,
       height: double.infinity,
@@ -42,8 +56,12 @@ class _MapScreenState extends State<MapScreen> {
       child: Stack(
         children: [
           FlutterMap(
-            options: const MapOptions(
-              initialCenter: LatLng(-29.6842, -51.1303),
+            mapController: _mapController,  
+            options: MapOptions(
+              initialCenter: LatLng(
+                _currentPosition?.latitude ?? -29.6842,
+                _currentPosition?.longitude ?? -51.1303,
+              ),
               initialZoom: 13,
             ),
             children: [
